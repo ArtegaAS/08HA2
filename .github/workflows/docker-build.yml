@@ -22,15 +22,17 @@ jobs:
           username: ${{ secrets.GHCR_USERNAME }}
           password: ${{ secrets.GHCR_TOKEN }}
 
+      - name: Set lowercase owner
+        run: echo "OWNER_LC=${GITHUB_REPOSITORY_OWNER,,}" >> $GITHUB_ENV
+
       - name: Build and push Docker image
-        id: build_push
         uses: docker/build-push-action@v5
         with:
           context: .
           push: true
           tags: |
-            ghcr.io/${{ secrets.GHCR_USERNAME }}/flask-app:latest
-            ghcr.io/${{ secrets.GHCR_USERNAME }}/flask-app:${{ github.sha }}
+            ghcr.io/${{ env.OWNER_LC }}/flask-app:latest
+            ghcr.io/${{ env.OWNER_LC }}/flask-app:${{ github.sha }}
 
       - name: Send Telegram notification
         if: always()

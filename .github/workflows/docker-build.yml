@@ -3,9 +3,9 @@ name: Docker Build and Push with Telegram
 
 on:
   push:
-    branches: [master, md-sa2-33-25]
+    branches: [main]
   pull_request:
-    branches: [master, md-sa2-33-25]
+    branches: [main]
 
 jobs:
   build:

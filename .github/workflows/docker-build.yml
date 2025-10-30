@@ -1,5 +1,5 @@
 ---
-name: Docker Build and Push with Telegram
+name: Docker Build & Push with Telegram
 
 on:
   push:
